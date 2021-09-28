@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Exercise from './Exercise.js';
 import AddWorkout from './AddWorkout.js';
-import WorkoutGenerator from './WorkoutGenerator.js';
 import './ExerciseList.scss';
 
 function ExerciseList() {
@@ -18,11 +17,11 @@ function ExerciseList() {
 
       <h2>Exercise List</h2>
 
-      <div className="exercise-header">
-        <div className="heading">Name</div>
-        <div className="heading">Type</div>
-        <div className="heading">Timing</div>
-        <div className="heading">Target</div>
+      <div className="exercise-header exercise-columns">
+        <div className="heading cell name">Name</div>
+        <div className="heading cell type">Type</div>
+        <div className="heading cell timing">Timing</div>
+        <div className="heading cell target">Target</div>
       </div>
 
       {list.map(item =>
@@ -36,8 +35,6 @@ function ExerciseList() {
         />)}
 
         <AddWorkout />
-
-        <WorkoutGenerator />
 
     </div>
   );

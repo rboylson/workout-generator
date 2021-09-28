@@ -24,14 +24,14 @@ function AddWorkout( props ) {
       <h2>Add Exercise</h2>
       <iframe name="formframe" id="formframe" title="formframe"></iframe>
       <form id="input" autoComplete="off" action="http://localhost:3000/workouts" method="POST" target="formframe" onSubmit={() => refreshPage()}>
-        <input type="text" id="name" name="name" placeholder="Name" />
-        <select id="type" name="type">
+        <input type="text" id="name" className="inputName" name="name" placeholder="Name" />
+        <select id="type"className="inputType"  name="type">
           {type.map(item =>
             <option key={item.id} value={item.name}>{item.name}</option>
           )}
         </select>
-        <input type="text" id="timing" name="timing" placeholder="Timing" />
-        <select id="target" name="target">
+        <input type="text" id="timing" className="inputTiming" name="timing" placeholder="Timing" />
+        <select id="target" className="inputTarget" name="target">
           {targets.map(item =>
             <option key={item.id} value={item.name}>{item.name}</option>
           )}

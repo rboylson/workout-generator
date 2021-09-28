@@ -75,17 +75,17 @@ function Exercise( props ) {
   return (
     <div className="exercise-container">
       <div className="exercise-wrapper" id={props.id}>
-        <div className="exercise" id={`row${props.id}`}>
-            <div className="cell">{ props.name }</div>
-            <div className="cell">{ props.type }</div>
-            <div className="cell">{ props.timing }</div>
-            <div className="cell">{ props.target}</div>
+        <div className="exercise exercise-columns" id={`row${props.id}`}>
+            <div className="cell name" onClick={() => editItem(props)}>{ props.name }</div>
+            <div className="cell type">{ props.type }</div>
+            <div className="cell timing">{ props.timing }</div>
+            <div className="cell target">{ props.target}</div>
         </div>
 
         <div className="exercise-form" id={`form${props.id}`}>
-          <form target="formframe" onSubmit={() => updateItem(props)} >
-            <input className="cell" type="text" id="name" name="name" placeholder={props.name} />
-            <select id="type" name="type">
+          <form id="inputExercise" target="formframe" onSubmit={() => updateItem(props)} >
+            <input className="cell inputName" type="text" id="name" name="name" placeholder={props.name} />
+            <select id="type"  className="inputType" name="type">
               <option value={props.type}>{props.type}</option>
               {
                 type.map(item => 
@@ -93,8 +93,8 @@ function Exercise( props ) {
                 )
               }
             </select>
-            <input className="cell" type="text" id="timing" name="timing" placeholder={props.timing} />
-            <select id="target" name="target">
+            <input className="cell inputTiming" type="text" id="timing" name="timing" placeholder={props.timing} />
+            <select id="target" className="inputTarget" name="target">
               <option value={props.target}>{props.target}</option>
               {
                 target.map(item => 

@@ -3,9 +3,9 @@
     {
       "id": "5",
       "name": "Exercise 1",
-      "type": "Exercise",
+      "type": "Stretch",
       "timing": "50s",
-      "target": "Core, Lower Back, Glutes"
+      "target": "Posture"
     },
     {
       "id": "jH8L-yf",
@@ -55,6 +55,13 @@
       "timing": "30s",
       "target": "Core, Lower Back, Glutes",
       "id": "nsdBBFP"
+    },
+    {
+      "name": "Exercise 8",
+      "type": "Exercise",
+      "timing": "30s",
+      "target": "Arms & Upper Back",
+      "id": "ieZMQLb"
     }
   ],
   "types": [

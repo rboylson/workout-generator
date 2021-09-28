@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .content {
+    padding: 40px;
+  }
+
+  .exercise-columns {
+
+    .cell {
+      float: left;
+      padding: 5px 10px;
+      margin: 2px 0;
+    }
+
+    .name {
+      width: 200px;
+    }
+
+    .type {
+      width: 120px;
+    }
+
+    .timing {
+      width: 100px;
+    }
+
+    .target {
+      width: 220px;
+    }
+
+  }
+  
+}
+
+
+.inputName {
+  width: 185px;
+  height: 30px;
+  padding: 0 10px;
+  margin: 2px 10px 0 5px;
+
+  ::placeholder {
+    padding: 0 0 0 10px;
+  }
+}
+
+.inputType {
+  width: 120px;
+  padding: 0 10px;
+  margin: 2px 0 2px 0;
+  height: 34px;
+}
+
+.inputTiming {
+  width: 80px;
+  padding: 0 10px;
+  margin: 2px 10px 2px 10px;
+  height: 30px;
+}
+
+.inputTarget {
+  width: 220px;
+  height: 34px;
+  padding: 0 10px;
+  margin: 2px 0;
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import ExerciseList from './components/ExerciseList';
+import App from './App.js'
+import './index.scss';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ExerciseList />
-  </React.StrictMode>,
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
   document.getElementById('root')
 );

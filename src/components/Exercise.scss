@@ -10,16 +10,6 @@
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
-      border-collapse: collapse;
-
-      
-      .cell {
-        float: left;
-        width: 190px;
-        border: 1px solid grey;
-        padding: 5px 10px;
-        margin: 2px 0;
-      }
     }
 
     .exercise-form {

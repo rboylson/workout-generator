@@ -1,30 +1,58 @@
+import { Route } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+
 
 function WorkoutGenerator() {
 
-  let inputType = "Stretch";
-  const [query, setQuery] = useState([]);
-
-  let url = `http://localhost:3000/workouts?type=${inputType}&target=Posture`;
+  const [type, setType] = useState([]);
   useEffect(()=>{
-    fetch(url)
+    fetch('http://localhost:3000/types')
       .then(response => response.json())
-      .then(setQuery);
-  }, [url]);
+      .then(setType);
+  }, []);
+
+  const [targets, setTarget] = useState([]);
+  useEffect(()=>{
+    fetch('http://localhost:3000/target')
+      .then(response => response.json())
+      .then(setTarget);
+  }, []);
 
   return (
     <div className="workout-generator">
       <h2>Generate Workout</h2>
 
-      <form target="/workoutgenerator">
-        <input className="cell" type="text" id="type" name="type" />
-        <input className="cell" type="submit"/>
+      <form autoComplete="off">
+        <select id="workoutType" className="inputType"  name="workoutType">
+          {type.map(item =>
+            <option key={item.id} value={item.name}>{item.name}</option>
+          )}
+        </select>
+        <select id="workoutTarget" className="inputTarget" name="workoutTarget">
+          {targets.map(item =>
+            <option key={item.id} value={item.name}>{item.name}</option>
+          )}
+        </select>
+        <input type="reps" id="workoutTiming" className="inputTiming" name="workoutTiming" placeholder="Reps" />
+        
       </form> 
       
-      {query.map(item =>
-        <p key={ item.id }>{ item.name }: {item.timing }</p>
-      )}
+      <Route render={({ history }) => (
+        <button onClick={() => { 
+            let workoutType = document.querySelector("#workoutType").value;
+            let workoutTarget = document.querySelector("#workoutTarget").value;
+            let workoutReps = document.querySelector("#workoutTiming").value;
+            if (workoutReps === "" ) { workoutReps = "12" }
 
+            history.push( {
+              pathname: '/start',
+              state: { workoutType: workoutType, workoutTarget: workoutTarget, workoutReps: workoutReps }
+            });
+          }} >
+          Start Workout
+        </button>
+      )} />
+      
     </div>
   );
 }

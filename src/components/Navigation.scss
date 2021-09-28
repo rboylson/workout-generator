@@ -1,0 +1,13 @@
+.navigation-wrapper {
+  height: 50px;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+
+  a {
+    padding: 0 30px 0 0;
+    text-decoration: none;
+  }
+}
