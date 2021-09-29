@@ -14,28 +14,28 @@ function ExerciseList() {
 
   return (
     <div className="exercise-list">
-
       <h2>Exercise List</h2>
-
-      <div className="exercise-header exercise-columns">
-        <div className="heading cell name">Name</div>
-        <div className="heading cell type">Type</div>
-        <div className="heading cell timing">Timing</div>
-        <div className="heading cell target">Target</div>
-      </div>
-
-      {list.map(item =>
-        <Exercise 
-          key={ item.id }
-          id={ item.id } 
-          name={ item.name } 
-          type={ item.type } 
-          timing={ item.timing } 
-          target={ item.target } 
-        />)}
-
+      <table>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Target</th>
+            <th>Timing</th>
+            <th></th>
+          </tr>
+          {list.map(item =>
+            <Exercise 
+              key={ item.id }
+              id={ item.id } 
+              name={ item.name } 
+              type={ item.type } 
+              timing={ item.timing } 
+              target={ item.target } 
+            />)}
+          </tbody>
+        </table>
         <AddWorkout />
-
     </div>
   );
 }

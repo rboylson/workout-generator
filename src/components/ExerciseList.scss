@@ -1,22 +1,40 @@
 .exercise-list {
 
-  .exercise-header {
+  table {
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     border-collapse: collapse;
+    border: 1px solid grey;
 
-    .heading {
+    a {
+      color: black;
+      cursor: pointer;
+    }
+
+    th, td {
+      border-top: 1px solid grey;
+      border-bottom: 1px solid grey;
+      padding: 5px;
+    }
+
+    th {
       font-weight: bold;
+      text-align: left;
+    }
+
+    td {
+
+      input {
+        border: none;
+      }
+
+      ::placeholder {
+        color: black;
+        opacity: 1;
+      }
     }
   }
 
   iframe {
     display: none;
-  }
-
-  #input {
-    margin-top: 30px;
   }
 }

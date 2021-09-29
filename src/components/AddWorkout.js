@@ -30,13 +30,13 @@ function AddWorkout( props ) {
             <option key={item.id} value={item.name}>{item.name}</option>
           )}
         </select>
-        <input type="text" id="timing" className="inputTiming" name="timing" placeholder="Timing" />
         <select id="target" className="inputTarget" name="target">
           {targets.map(item =>
             <option key={item.id} value={item.name}>{item.name}</option>
           )}
         </select>
-        <input type="submit"/>
+        <input type="text" id="timing" className="inputTiming" name="timing" placeholder="Timing" />
+        <input type="submit" className="inputSubmit" value="Test" />
       </form> 
     </div>
   );

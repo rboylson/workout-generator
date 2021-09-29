@@ -21,7 +21,7 @@ function WorkoutGenerator() {
   return (
     <div className="workout-generator">
       <h2>Generate Workout</h2>
-
+      
       <form autoComplete="off">
         <select id="workoutType" className="inputType"  name="workoutType">
           {type.map(item =>
