@@ -1,3 +1,4 @@
+import { Route } from 'react-router-dom';
 import './CompleteMessage.scss';
 
 let inspirationalQuotes = [
@@ -16,7 +17,20 @@ function CompleteMessage( props ) {
 
   return (
     <div id="complete-message">
-      <div className="exit" onClick={() => closeMessage()}>×</div>
+      <Route render={({ history }) => (
+        <a onClick={() => { 
+          closeMessage()
+
+          history.push( {
+            pathname: '/workout',
+            state: inspirationalQuotes
+          });
+
+          }} >
+          ×
+        </a>
+      )} />
+
       <p>{ inspirationalQuotes[Math.floor(Math.random() * (inspirationalQuotes.length))] }</p>
     </div>
   );

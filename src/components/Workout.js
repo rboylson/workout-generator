@@ -52,15 +52,15 @@ function Workout( props ) {
   let WorkoutList = () => { 
     setWorkoutArray(workoutArray);
     return (
-      <div>
+      <div className="workout-container">
         {
           workoutArray.map((item) => {
             if (item && item.count > 0) {
               return (
                 <div className="workout-list-item">
-                  <label>{item.name}: {item.timing}</label>
-                  <div className="workout-list-item">
-                    <label>{item.count}&nbsp;{item.id}&nbsp;&nbsp;</label>
+                  <h1>{item.name}: {item.timing}</h1>
+                  <div className="label-wrapper">
+                    <label>{item.count}x&nbsp;&nbsp;&nbsp;</label>
                     <input type="checkbox" className="checkboxWorkout checkbox-item" id={item.id} name={item.id} value={item.id} 
                     onClick={() => workoutChecked(item.id)}/>
                   </div>
