@@ -1,25 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import './Workout.scss';
-import CompleteMessage from './CompleteMessage.js';
+import { Box, CheckBox, Grid, Layer, List, Text } from 'grommet';
+import { Route } from 'react-router-dom';
 
+let checkedNum = 0;
+let inspirationalQuotes = [
+  "Bravo!",
+  "You did it!",
+  "You did it! Treat yo-self (but make sure it's healthy)",
+  "Brava, Brava, Bravissima!"
+]
 
-function Workout( props ) {
-
-  const {state} = useLocation();
-  const {workoutType, workoutTarget, workoutReps } = state;
-  const [query, setQuery] = useState([]);
-  const [workoutArray, setWorkoutArray] = useState([]);
-  
-  let url = `http://localhost:3000/workouts?type=${workoutType}&target=${workoutTarget}`;
-  useEffect(()=>{
-    fetch(url)
-      .then(response => response.json())
-      .then(setQuery);
-  }, [url]);
-
+function randomizeQuery(query, workoutArray, workoutReps) {
   for (var j = 0; j < query.length; j++) {
-    workoutArray[j] = {...query[j], "count": "0"};
+    workoutArray[j] = {...query[j], "count": "0", "checked": false };
   }
 
   for (var i = 0; i < workoutReps; i++) {
@@ -28,56 +22,86 @@ function Workout( props ) {
       workoutArray[randomNumber].count++;
     }
   } 
+}
 
-  let checkedArray = [];
-  let checkboxArray = document.getElementsByClassName("checkbox-item");
+function Workout( props ) {
 
-  function workoutChecked(workoutId) {
+  const {state} = useLocation();
+  const {workoutType, workoutTarget, workoutReps } = state;
+  const [query, setQuery] = useState([]);
+  let workoutArray = [];
+  let url = `http://localhost:3000/workouts?type=${workoutType}&target=${workoutTarget}`;
+  let [showLayer, setShowLayer] = useState(false);
 
-    if(checkedArray.indexOf(workoutId) === -1 ) {
-      checkedArray.push(workoutId);
-    } else {
-      checkedArray.splice((checkedArray.indexOf(workoutId), 1));
+  useEffect(()=>{
+    fetch(url)
+      .then(response => response.json())
+      .then(setQuery);
+  }, [url]);
+
+  randomizeQuery(query, workoutArray, workoutReps);
+
+  function setChecked(event, workoutArray) {
+    if (event) { checkedNum++ } else { checkedNum-- }
+    if (checkedNum === workoutArray.length ) {
+      setShowLayer(!showLayer);
     }
-    console.log("! " + checkboxArray.length + " " + checkedArray.length + " " + checkedArray);
-
-    if (checkedArray.length === checkboxArray.length) {
-      console.log("complete!");
-      let completeMessage = document.getElementById("complete-message");
-      completeMessage.style.left = "0";
-    }
-  }
-
-
-  let WorkoutList = () => { 
-    setWorkoutArray(workoutArray);
-    return (
-      <div className="workout-container">
-        {
-          workoutArray.map((item) => {
-            if (item && item.count > 0) {
-              return (
-                <div className="workout-list-item">
-                  <h1>{item.name}: {item.timing}</h1>
-                  <div className="label-wrapper">
-                    <label>{item.count}x&nbsp;&nbsp;&nbsp;</label>
-                    <input type="checkbox" className="checkboxWorkout checkbox-item" id={item.id} name={item.id} value={item.id} 
-                    onClick={() => workoutChecked(item.id)}/>
-                  </div>
-                </div>
-              )
-            }
-          })
-        }
-      </div>
-    )
   }
 
   return (
-    <div>
-      <div>{ <WorkoutList /> }</div>
-      <div>{ <CompleteMessage /> }</div>
-    </div>
+    <Box
+      direction="row-responsive"
+      justify="center"
+      align="center"
+      pad="xlarge"
+      background="dark-2"
+      gap="medium"
+    >
+      <Grid
+          width= {{
+            width: "600px",
+            min: "600px",
+            max: "600px",
+          }}
+      >
+        <List
+          data={ workoutArray }
+          key="id"
+          primaryKey="name"
+          secondaryKey="count"
+          action={(item) => (
+            <CheckBox 
+              key="id"
+              onChange={(event) => setChecked(event.target.checked, workoutArray, showLayer)}
+            />
+          )}
+        />
+      </Grid>
+      {showLayer && (
+        <Layer full animation="fadeIn">
+          <Box fill background="light-4" align="center" justify="center">
+            <Text
+              size="large"
+            >
+              { inspirationalQuotes[Math.floor(Math.random() * (inspirationalQuotes.length))] }
+            </Text>
+            <Route render={({ history }) => (
+              <p onClick={() => { 
+                setShowLayer(false)
+
+                history.push( {
+                  pathname: '/workout',
+                  state: inspirationalQuotes
+                });
+
+                }} >
+                ×
+              </p>
+            )} />
+          </Box>
+        </Layer>
+      )}
+    </Box>
   );
 }
 

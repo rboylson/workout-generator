@@ -1,3 +1,4 @@
+import { TableCell, TableRow } from 'grommet';
 
 function updateItem( props ) {
   let url = `http://localhost:3000/workouts/${ props.id }`;
@@ -36,17 +37,16 @@ function Exercise( props ) {
 
 
   return (
-    <tr id={props.id}>
-      <td>{ props.name }</td>
-      <td>{ props.type }</td>
-      <td>{ props.target }</td>
-      <td>
-        <form id={`form${props.id}`} onSubmit={() => updateItem(props)} >
+    <TableRow key={props.id}>
+      <TableCell>{ props.name }</TableCell>
+      <TableCell>{ props.type }</TableCell>
+      <TableCell>{ props.target }</TableCell>
+      <TableCell><form id={`form${props.id}`} onSubmit={() => updateItem(props)} >
           <input type="text" id="timing" placeholder={props.timing} />
-        </form> 
-      </td>
-      <td><a onClick={() => deleteItem(props)}>×</a></td>
-    </tr>    
+        </form>
+      </TableCell>
+      <TableCell><p onClick={() => deleteItem(props)}>×</p></TableCell>
+    </TableRow>   
   );
 }
 

@@ -18,7 +18,7 @@ function CompleteMessage( props ) {
   return (
     <div id="complete-message">
       <Route render={({ history }) => (
-        <a onClick={() => { 
+        <p onClick={() => { 
           closeMessage()
 
           history.push( {
@@ -28,7 +28,7 @@ function CompleteMessage( props ) {
 
           }} >
           ×
-        </a>
+        </p>
       )} />
 
       <p>{ inspirationalQuotes[Math.floor(Math.random() * (inspirationalQuotes.length))] }</p>

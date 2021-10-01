@@ -8,13 +8,6 @@
       "target": "Posture"
     },
     {
-      "id": "b",
-      "name": "Cat pose",
-      "type": "Stretch",
-      "timing": "20s",
-      "target": "Posture"
-    },
-    {
       "id": "c",
       "name": "Child's pose",
       "type": "Stretch",
@@ -29,11 +22,18 @@
       "target": "Posture"
     },
     {
-      "id": "b1",
-      "name": "Cat pose",
+      "name": "name",
       "type": "Stretch",
-      "timing": "20s",
-      "target": "Posture"
+      "timing": "Posture",
+      "target": "30s",
+      "id": "pFuYPda"
+    },
+    {
+      "name": "test",
+      "type": "Stretch",
+      "timing": "Posture",
+      "target": "",
+      "id": "GPgtmf_"
     }
   ],
   "types": [

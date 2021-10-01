@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
-import './Navigation.scss';
+import { Header, Nav } from 'grommet';
 
 function Navigation() {
 
   return (
-    <div className="navigation-wrapper">
-      <Link to='/list'>Exercise List</Link>
-      <Link to='/workout'>Start Workout</Link>
-    </div>
+    <Header background="light-4" pad="small">
+      <Nav direction="row">
+        <Link to='/list'>Exercise List</Link>
+        <Link to='/workout'>Start Workout</Link>
+      </Nav>
+    </Header>      
   );
 }
 
