@@ -1,17 +1,13 @@
-import { TableCell, TableRow } from 'grommet';
+import { Box, TableCell, TableRow, TextInput, ThemeContext } from 'grommet';
 
-function updateItem( props ) {
+function updateItem( event, props ) {
   let url = `http://localhost:3000/workouts/${ props.id }`;
-
-  let section = document.getElementById(props.id);
-  let timing = section.querySelector("#timing").value;
-  if (timing === "" ) { timing = props.timing }
 
   let body = {
     id: props.id,
     name: props.name,
     type: props.type,
-    timing: timing,
+    timing: event,
     target: props.target
   };
 
@@ -23,8 +19,6 @@ function updateItem( props ) {
     },
     body: JSON.stringify(body)
   });
-
-  window.location.reload(false);
 }
 
 function Exercise( props ) {  
@@ -32,21 +26,37 @@ function Exercise( props ) {
   function deleteItem(props) {
     let url = `http://localhost:3000/workouts/${ props.id }`;  
     fetch(url, { method: 'DELETE' });
-    window.location.reload(false);
+    props.setUrlUpdated(url);
   }
 
-
   return (
-    <TableRow key={props.id}>
-      <TableCell>{ props.name }</TableCell>
-      <TableCell>{ props.type }</TableCell>
-      <TableCell>{ props.target }</TableCell>
-      <TableCell><form id={`form${props.id}`} onSubmit={() => updateItem(props)} >
-          <input type="text" id="timing" placeholder={props.timing} />
-        </form>
-      </TableCell>
-      <TableCell><p onClick={() => deleteItem(props)}>×</p></TableCell>
-    </TableRow>   
+
+      <TableRow key={props.id}>
+        <TableCell plain="noPad">{ props.name }</TableCell>
+        <TableCell plain="noPad">{ props.type }</TableCell>
+        <TableCell plain="noPad">{ props.target }</TableCell>
+        <ThemeContext.Extend
+          value={{
+            box: {
+              extend: () => `
+                max-height: 48px !important;
+                height: 48px;
+                overflow: hidden;
+              `
+            }
+          }}>
+          <TableCell plain="noPad">
+            <Box width="100px">
+            <TextInput 
+                size="small"
+                placeholder={props.timing}
+                onChange={event => updateItem(event.target.value, props)}
+              /> 
+            </Box>
+          </TableCell>
+        </ThemeContext.Extend>
+        <TableCell plain="noPad"><p onClick={() => deleteItem(props)}>×</p></TableCell>
+      </TableRow>   
   );
 }
 

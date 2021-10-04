@@ -1,16 +1,17 @@
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { Button as GrommetButton, Grid, TextInput } from 'grommet';
+import { Box, Button, Grid, Select, Text, TextInput, ThemeContext } from 'grommet';
+
 
 function WorkoutGenerator() {
-
-  let typeExercises = [];
-  let targetExercises = [];
+  
   const [workoutTypeInput, setWorkoutTypeInput] = useState('');
   const [workoutTargetInput, setWorkoutTargetInput] = useState('');
   const [workoutRepsInput, setWorkoutRepsInput] = useState('');
   const [type, setType] = useState([]);
   const [targets, setTarget] = useState([]);
+  let typeExercises = [];
+  let targetExercises = [];
 
   useEffect(()=>{
     fetch('http://localhost:3000/types')
@@ -32,52 +33,108 @@ function WorkoutGenerator() {
     return targetExercises[index] = element.name;
   });
 
+
   return (
-    <div className="workout-generator">
-      <h2>Generate Workout</h2>
-      <Grid
-        fill
-        columns={['small', 'small', 'xsmall', 'small']}
-        rows={['flex']}
-        gap="small"
-      >
-        <TextInput
-          placeholder="Exercise Type"
-          value={workoutTypeInput}
-          onSelect={event => setWorkoutTypeInput(event.suggestion)}
-          suggestions={typeExercises}
-          className="add-workout-cell"
-        />        
-        <TextInput
-          placeholder="Exercise Target"
-          value={workoutTargetInput}
-          onSelect={event => setWorkoutTargetInput(event.suggestion)}
-          suggestions={targetExercises}
-          className="add-workout-cell"
-        />
-        <TextInput 
-          placeholder="Reps" 
-          value={workoutRepsInput}
-          onChange={event => setWorkoutRepsInput(event.target.value)}
-          className="add-workout-cell" 
-          type="number"
-        />
-        <Route render={({ history }) => (
-          <GrommetButton
-            label="Start Workout" 
-            onClick={() => { 
-                history.push( {
-                  pathname: '/start',
-                  state: { 
-                    workoutType: workoutTypeInput, 
-                    workoutTarget: workoutTargetInput, 
-                    workoutReps: workoutRepsInput }
-                });
-              }} >
-            </GrommetButton>
-          )} 
-        />
-      </Grid>
+    <div>
+      <Box align='end'>
+        <Link to='/list'>
+          <Text size="xlarge">⚙</Text>
+        </Link>
+      </Box> 
+
+      <Box pad= {{ left: 'small', right: 'small', top: 'xlarge', bottom: 'none' }} >
+        
+        <Text 
+          size="xlarge"
+          textAlign="center"
+          margin="medium" >
+          Generate Workout
+        </Text>
+      </Box>
+
+      <Box pad= {{ left: 'small', right: 'small', top: 'none', bottom: 'medium' }} >
+
+        <ThemeContext.Extend
+            value={{
+              grid: {
+                extend: () => `                  
+                  @media screen and (max-width: 767px) {
+                    flex-direction: column;
+                    display: flex;
+                    max-width: 300px;
+                    margin: 0 auto;
+                  }
+                `,
+              },
+              text: {
+                extend: () => `                  
+                  font-size: 18px;
+                `,
+              },
+            }}
+          >
+          <Grid
+            columns={['medium', 'medium', 'xsmall']}
+            justifyContent="center"
+            gap="small" >
+
+              <Select
+                placeholder="Exercise Type"
+                multiple
+                messages={{ multiple: "Multiple" }}
+                closeOnChange={false}
+                options={typeExercises}
+                onChange={event => setWorkoutTypeInput(event.value)}
+              /> 
+
+              <Select
+                placeholder="Exercise Target"
+                options={targetExercises}
+                onChange={event => setWorkoutTargetInput(event.value)}
+              />      
+
+              <TextInput 
+                placeholder="Reps" 
+                value={workoutRepsInput}
+                onChange={event => setWorkoutRepsInput(event.target.value)}
+                type="number"
+              />
+          </Grid>
+        </ThemeContext.Extend>
+      </Box>
+      <Box>
+        <ThemeContext.Extend
+                value={{
+                  button: {
+                    extend: () => `
+                      font-size: 18px;
+                      color: white;
+                      background-color: purple;
+                      border-radius: 50px;
+                      height: 46px;
+                      width: fit-content;
+                      margin: 0 auto;
+                    `,
+                  },
+                }}
+              >
+              <Route render={({ history }) => (
+                <Button
+                  label="Start Workout" 
+                  onClick={() => { 
+                      history.push( {
+                        pathname: '/start',
+                        state: { 
+                          workoutType: workoutTypeInput, 
+                          workoutTarget: workoutTargetInput, 
+                          workoutReps: workoutRepsInput }
+                      });
+                    }} >
+                  </Button>
+                )} 
+              />
+          </ThemeContext.Extend>
+      </Box>
     </div>
   );
 }

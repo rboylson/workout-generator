@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Box, CheckBox, Grid, Layer, List, Text } from 'grommet';
+import { Box, Button as GrommetButton, CheckBox, Layer, List, Text, ThemeContext } from 'grommet';
 import { Route } from 'react-router-dom';
 
 let checkedNum = 0;
@@ -11,26 +11,40 @@ let inspirationalQuotes = [
   "Brava, Brava, Bravissima!"
 ]
 
-function randomizeQuery(query, workoutArray, workoutReps) {
+function randomizeQuery(query, workoutArray, workoutReps, workoutTarget) {
   for (var j = 0; j < query.length; j++) {
-    workoutArray[j] = {...query[j], "count": "0", "checked": false };
+    workoutArray[j] = {...query[j], "count": 0, "checked": false };
+    
+    if(workoutArray[j].target.indexOf(workoutTarget) === -1) {
+      workoutArray.splice(j, 1);
+    }
   }
+
+  workoutArray = workoutArray.filter(i => i);
 
   for (var i = 0; i < workoutReps; i++) {
     let randomNumber = Math.floor(Math.random() * (workoutArray.length));
     if (workoutArray[randomNumber] != null) {
       workoutArray[randomNumber].count++;
     }
-  } 
+  }  
+
+  return workoutArray;
 }
 
 function Workout( props ) {
 
   const {state} = useLocation();
-  const {workoutType, workoutTarget, workoutReps } = state;
   const [query, setQuery] = useState([]);
+  const {workoutType, workoutTarget, workoutReps } = state;
+  let workoutTypeJson = "";
+
+  for (var m = 0; m < state.workoutType.length; m++) {
+    workoutTypeJson += "type=" + workoutType[m] + "&";
+  }
+
   let workoutArray = [];
-  let url = `http://localhost:3000/workouts?type=${workoutType}&target=${workoutTarget}`;
+  let url = `http://localhost:3000/workouts?${workoutTypeJson}`;
   let [showLayer, setShowLayer] = useState(false);
 
   useEffect(()=>{
@@ -39,69 +53,107 @@ function Workout( props ) {
       .then(setQuery);
   }, [url]);
 
-  randomizeQuery(query, workoutArray, workoutReps);
+  randomizeQuery(query, workoutArray, workoutReps, workoutTarget);
+  workoutArray = workoutArray.filter(i => i);
 
   function setChecked(event, workoutArray) {
     if (event) { checkedNum++ } else { checkedNum-- }
-    if (checkedNum === workoutArray.length ) {
+    if (checkedNum === workoutArray.filter(checkCount).length ) {
       setShowLayer(!showLayer);
     }
   }
 
+  function checkCount(item) {
+    return item.count > 0;
+  }
+
   return (
-    <Box
-      direction="row-responsive"
-      justify="center"
-      align="center"
-      pad="xlarge"
-      background="dark-2"
-      gap="medium"
-    >
-      <Grid
-          width= {{
-            width: "600px",
-            min: "600px",
-            max: "600px",
-          }}
+    <div>
+      <Box
+        justify="center"
+        pad="xlarge"
       >
         <List
-          data={ workoutArray }
-          key="id"
-          primaryKey="name"
-          secondaryKey="count"
+          pad="large"
+          data={ workoutArray.filter(checkCount) }
+          primaryKey = { item => (<Text size="xlarge">{item.name}: {item.timing}</Text>) }
+          secondaryKey = { item => (<Text size="large">Repeat {item.count}x</Text>) }
           action={(item) => (
             <CheckBox 
-              key="id"
+              pad="medium"
               onChange={(event) => setChecked(event.target.checked, workoutArray, showLayer)}
             />
           )}
         />
-      </Grid>
+      </Box>
+
       {showLayer && (
-        <Layer full animation="fadeIn">
-          <Box fill background="light-4" align="center" justify="center">
-            <Text
-              size="large"
+        <Layer full>
+          <Box 
+            fill 
+            background="purple" 
+            align="center" 
+            justify="center" >
+            <Box width="large">
+              <ThemeContext.Extend
+                value={{
+                    text: {
+                      extend: () => `
+                        color: #ffdbe1;
+                      `,
+                  },
+                }}
+              >
+                <Text
+                  size="xlarge"
+                  textAlign="center"
+                  margin={{
+                    bottom: "20px"
+                  }}>
+                  { inspirationalQuotes[Math.floor(Math.random() * (inspirationalQuotes.length))] }
+                </Text>
+              </ThemeContext.Extend>
+            </Box>
+            <ThemeContext.Extend
+              value={{
+                button: {
+                  extend: () => `
+                    color: purple;
+                    background-color: #ffdbe1;
+                    border-radius: 50px;
+
+                    &:hover {
+                      border-color: #ffdbe1;
+                    }
+                  `,
+                },
+              }}
             >
-              { inspirationalQuotes[Math.floor(Math.random() * (inspirationalQuotes.length))] }
-            </Text>
-            <Route render={({ history }) => (
-              <p onClick={() => { 
-                setShowLayer(false)
-
-                history.push( {
-                  pathname: '/workout',
-                  state: inspirationalQuotes
-                });
-
-                }} >
-                ×
-              </p>
-            )} />
+              <Route render={({ history }) => (
+                <GrommetButton 
+                  label="Finish Workout"
+                  margin={{
+                    top: "10px",
+                    bottom: "90px",
+                  }}
+                  border={{
+                    radius: "50px",
+                  }}
+                  size="large"
+                  onClick={() => { 
+                    setShowLayer(false)
+                    history.push( {
+                      pathname: '/workout',
+                      state: inspirationalQuotes
+                    });
+                  }} >
+                </GrommetButton>
+              )} />
+            </ThemeContext.Extend>
           </Box>
         </Layer>
       )}
-    </Box>
+    </div>
   );
 }
 
