@@ -18,7 +18,7 @@ function updateItem( event, props ) {
         Accept: "application/json",
     },
     body: JSON.stringify(body)
-  });
+  });``
 }
 
 function Exercise( props ) {  
