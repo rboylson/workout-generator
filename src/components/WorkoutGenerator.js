@@ -37,7 +37,7 @@ function WorkoutGenerator() {
   return (
     <div>
       <Box align='end'>
-        <Link to='/list'>
+        <Link to="/list">
           <Text size="xlarge">⚙</Text>
         </Link>
       </Box> 
@@ -79,7 +79,7 @@ function WorkoutGenerator() {
             gap="small" >
 
               <Select
-                placeholder="Exercise Type"
+                placeholder="Type"
                 multiple
                 messages={{ multiple: "Multiple" }}
                 closeOnChange={false}
@@ -88,7 +88,7 @@ function WorkoutGenerator() {
               /> 
 
               <Select
-                placeholder="Exercise Target"
+                placeholder="Target"
                 options={targetExercises}
                 onChange={event => setWorkoutTargetInput(event.value)}
               />      
@@ -123,7 +123,7 @@ function WorkoutGenerator() {
                   label="Start Workout" 
                   onClick={() => { 
                       history.push( {
-                        pathname: '/start',
+                        pathname: "/start",
                         state: { 
                           workoutType: workoutTypeInput, 
                           workoutTarget: workoutTargetInput, 

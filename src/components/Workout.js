@@ -39,8 +39,10 @@ function Workout( props ) {
   const {workoutType, workoutTarget, workoutReps } = state;
   let workoutTypeJson = "";
 
-  for (var m = 0; m < state.workoutType.length; m++) {
-    workoutTypeJson += "type=" + workoutType[m] + "&";
+  if(state.workoutType) {
+    for (var m = 0; m < state.workoutType.length; m++) {
+      workoutTypeJson += "type=" + workoutType[m] + "&";
+    }
   }
 
   let workoutArray = [];
@@ -76,8 +78,8 @@ function Workout( props ) {
         <List
           pad="large"
           data={ workoutArray.filter(checkCount) }
-          primaryKey = { item => (<Text size="xlarge">{item.name}: {item.timing}</Text>) }
-          secondaryKey = { item => (<Text size="large">Repeat {item.count}x</Text>) }
+          primaryKey = { item => (<Text size="large">{item.name}: {item.timing}</Text>) }
+          secondaryKey = { item => (<Text size="medium">Repeat {item.count}x</Text>) }
           action={(item) => (
             <CheckBox 
               pad="medium"
@@ -143,7 +145,7 @@ function Workout( props ) {
                   onClick={() => { 
                     setShowLayer(false)
                     history.push( {
-                      pathname: '/workout',
+                      pathname: '/',
                       state: inspirationalQuotes
                     });
                   }} >

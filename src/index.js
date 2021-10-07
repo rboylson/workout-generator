@@ -46,7 +46,6 @@ const theme = {
       font-size: 18px;
       font-weight: normal;
       color: purple;
-      // border-radius: 50px;
       background: #fff;
       border-color: pink;
 
@@ -105,7 +104,7 @@ const theme = {
   },
 
   checkBox: {
-    size: "50px",
+    size: "35px",
     check: {
       radius: "6px",
       extend: () => `

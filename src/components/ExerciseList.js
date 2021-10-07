@@ -43,7 +43,7 @@ function ExerciseList() {
     <div>
 
       <Box align='end'>
-        <Link to='/workout'>
+        <Link to='/'>
           <Text size="xlarge">⌂</Text>
         </Link>
       </Box> 
@@ -69,7 +69,7 @@ function ExerciseList() {
             <TableRow>
               <TableCell>
                 <Text size="medium">
-                  Exercise Name
+                  Name
                 </Text>
               </TableCell>
               <TableCell>

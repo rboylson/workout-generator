@@ -4,11 +4,11 @@ html {
   background: linear-gradient(120deg, #fffcdc 0%, #d9a7c7 100%) no-repeat;
   background: -webkit-linear-gradient(120deg, #fffcdc 0%, #d9a7c7 100%) no-repeat; 
   background-size: cover;
-  height:100%;
 }
 
-body {
-  height: 100%;
+html, body, #root, #root>div {
+  height: auto;
+  min-height: 100%;
 }
 
 a {

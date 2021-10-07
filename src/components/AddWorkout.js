@@ -95,19 +95,19 @@ function AddWorkout( props ) {
           >
 
             <TextInput 
-              placeholder="Exercise Name" 
+              placeholder="Name" 
               value={exerciseNameInput}
               onChange={event => setExerciseNameInput(event.target.value)}
             /> 
 
             <Select
-              placeholder="Exercise Type"
+              placeholder="Type"
               options={typeExercises}
               onChange={event => setExerciseTypeInput(event.value)}
             /> 
 
             <Select
-              placeholder="Exercise Target"
+              placeholder="Target"
               multiple
               messages={{ multiple: "Multiple" }}
               closeOnChange={false}
