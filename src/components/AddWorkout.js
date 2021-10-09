@@ -12,6 +12,10 @@ function AddWorkout( props ) {
   const [exerciseTypeInput, setExerciseTypeInput] = useState('');
   const [exerciseTargetInput, setExerciseTargetInput] = useState('');
   const [exerciseTimingInput, setExerciseTimingInput] = useState('');
+  const [nameRequired, setNameRequired] = useState(false);
+  const [typeRequired, setTypeRequired] = useState(false);
+  const [targetRequired, setTargetRequired] = useState(false);
+  const [timingRequired, setTimingRequired] = useState(false);
 
   useEffect(()=>{
     fetch('http://localhost:3000/types')
@@ -53,19 +57,16 @@ function AddWorkout( props ) {
     });
   
     props.setUrlUpdated(url);
-  
+
+    setExerciseNameInput("");
+    setExerciseTypeInput("");
+    setExerciseTargetInput("");
+    setExerciseTimingInput("");
   }
 
   return (
     <div>
-
-      <Box pad={{top: 'small', left: 'small', bottom: 'medium'}} >
-        <Text size="large" >
-            Add Workout
-        </Text>
-      </Box>
-
-      <Box pad={{horizontal: 'small', bottom: 'medium'}} >
+      <Box pad='medium'>
 
         <ThemeContext.Extend
           value={{
@@ -88,38 +89,61 @@ function AddWorkout( props ) {
         >
 
           <Grid
-            fill
             columns={['medium', 'medium', 'medium', 'xsmall', 'xsmall']}
-            rows={['flex']}
-            gap="small"
+            gap="xsmall"
           >
 
-            <TextInput 
-              placeholder="Name" 
-              value={exerciseNameInput}
-              onChange={event => setExerciseNameInput(event.target.value)}
-            /> 
+            <Box>
+              <TextInput 
+                placeholder="Name" 
+                value={exerciseNameInput}
+                onChange={(event) => { 
+                  setExerciseNameInput(event.target.value);
+                  setNameRequired(false);
+                }}
+              /> 
+              <Text size="xsmall" className="required">{nameRequired && "required" }&nbsp;</Text>
+            </Box>
 
-            <Select
-              placeholder="Type"
-              options={typeExercises}
-              onChange={event => setExerciseTypeInput(event.value)}
-            /> 
+            <Box>
+              <Select
+                placeholder="Type"
+                options={typeExercises}
+                value={exerciseTypeInput}
+                onChange={(event) => {
+                  setExerciseTypeInput(event.value);
+                  setTypeRequired(false);
+                }}
+              />
+              <Text size="xsmall" className="required">{typeRequired && "required" }&nbsp;</Text>
+            </Box>
+            
+            <Box>
+              <Select
+                placeholder="Target"
+                multiple
+                messages={{ multiple: "Multiple" }}
+                closeOnChange={false}
+                options={targetExercises}
+                onChange={(event) => {
+                  setExerciseTargetInput((event.value).sort().join(', '));
+                  setTargetRequired(false);
+                }}
+              /> 
+              <Text size="xsmall" className="required">{targetRequired && "required" }&nbsp;</Text>
+            </Box>
 
-            <Select
-              placeholder="Target"
-              multiple
-              messages={{ multiple: "Multiple" }}
-              closeOnChange={false}
-              options={targetExercises}
-              onChange={event => setExerciseTargetInput((event.value).join(', '))}
-            />  
-
-            <TextInput 
-              placeholder="Timing" 
-              value={exerciseTimingInput}
-              onChange={event => setExerciseTimingInput(event.target.value)}
-            />
+            <Box>
+              <TextInput 
+                placeholder="Timing" 
+                value={exerciseTimingInput}
+                onChange={(event) => {
+                  setExerciseTimingInput(event.target.value);
+                  setTimingRequired(false);
+                }}
+              />
+              <Text size="xsmall" className="required">{timingRequired && "required" }&nbsp;</Text>
+            </Box>
 
             <ThemeContext.Extend
               value={{
@@ -134,16 +158,24 @@ function AddWorkout( props ) {
                     margin: 0 auto;
                   `,
                 },
-              }}
-            >
+            }}>
+
               <GrommetButton 
                 label="Add" 
-                onClick={() => addExerciseToList(exerciseNameInput, exerciseTypeInput, exerciseTargetInput, exerciseTimingInput )} 
+                onClick={() => {
+                  if(exerciseNameInput !== "" && exerciseTypeInput !== "" && exerciseTargetInput !== "" && exerciseTimingInput !== "") {
+                    addExerciseToList(exerciseNameInput, exerciseTypeInput, exerciseTargetInput, exerciseTimingInput )
+                  } else {
+                    if(exerciseNameInput === "") { setNameRequired(true); }
+                    if(exerciseTypeInput === "") { setTypeRequired(true); }
+                    if(exerciseTargetInput === "") { setTargetRequired(true); }
+                    if(exerciseTimingInput === "") { setTimingRequired(true); }
+                  }
+                }} 
               />
             
             </ThemeContext.Extend>
-
-
+            
           </Grid>
         </ThemeContext.Extend>
       </Box>

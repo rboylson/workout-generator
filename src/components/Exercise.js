@@ -1,50 +1,24 @@
-import { Box, TableCell, TableRow, TextInput } from 'grommet';
-
-function updateItem( event, props ) {
-  let url = `http://localhost:3000/workouts/${ props.id }`;
-
-  let body = {
-    id: props.id,
-    name: props.name,
-    type: props.type,
-    timing: event,
-    target: props.target
-  };
-
-  fetch(url, {
-    method: 'PUT',
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(body)
-  });
-}
+import { TableCell, TableRow } from 'grommet';
+import EditExercise from './EditExercise.js';
 
 function Exercise(props) {  
-
-  function deleteItem(props) {
-    let url = `http://localhost:3000/workouts/${ props.id }`;  
-    fetch(url, { method: 'DELETE' });
-    props.setUrlUpdated(url);
-  }
-
   return (
-      <TableRow key={props.id}>
-        <TableCell plain="noPad">{ props.name }</TableCell>
-        <TableCell plain="noPad">{ props.type }</TableCell>
-        <TableCell plain="noPad">{ props.target }</TableCell>
-        <TableCell plain="noPad">
-          <Box width="100px">
-            <TextInput 
-              size="small"
-              placeholder={props.timing}
-              onChange={event => updateItem(event.target.value, props)}
-            /> 
-          </Box>
-        </TableCell>
-        <TableCell plain="noPad"><p onClick={() => deleteItem(props)}>×</p></TableCell>
-      </TableRow>   
+    <TableRow key={props.id}>
+      <TableCell>{props.name}</TableCell>
+      <TableCell>{props.type}</TableCell>
+      <TableCell>{props.target}</TableCell>
+      <TableCell>{props.timing}</TableCell>
+      <TableCell>
+        <EditExercise 
+          id={props.id} 
+          name={props.name} 
+          type={props.type} 
+          target={props.target} 
+          timing={props.timing}
+          setUrlUpdated={props.setUrlUpdated}
+        />
+      </TableCell>
+    </TableRow>   
   );
 }
 
