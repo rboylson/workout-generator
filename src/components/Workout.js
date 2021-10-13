@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Box, Button as GrommetButton, CheckBox, Layer, List, Text, ThemeContext } from 'grommet';
+import { CheckBox, Layer, List, Text } from 'grommet';
 import { Route } from 'react-router-dom';
 
 let checkedNum = 0;
@@ -70,89 +70,42 @@ function Workout( props ) {
   }
 
   return (
-    <div>
-      <Box
-        justify="center"
-        pad="xlarge"
-      >
-        <List
-          pad="large"
-          data={ workoutArray.filter(checkCount) }
-          primaryKey = { item => (<Text size="large">{item.name}: {item.timing}</Text>) }
-          secondaryKey = { item => (<Text size="medium">Repeat {item.count}x</Text>) }
-          action={(item) => (
-            <CheckBox 
-              pad="medium"
-              onChange={(event) => setChecked(event.target.checked, workoutArray, showLayer)}
-            />
-          )}
-        />
-      </Box>
+    <div className="workout-wrapper">
+      <List
+        pad="medium"
+        data={ workoutArray.filter(checkCount) }
+        primaryKey = { item => (<Text size="large">{item.name}: {item.timing}</Text>) }
+        secondaryKey = { item => (<Text size="medium">Repeat {item.count}x</Text>) }
+        action={(item) => (
+          <CheckBox 
+            pad="medium"
+            onChange={(event) => setChecked(event.target.checked, workoutArray, showLayer)}
+          />
+        )}
+      />
 
       {showLayer && (
-        <Layer full>
-          <Box 
-            fill 
-            background="purple" 
-            align="center" 
-            justify="center" >
-            <Box width="large">
-              <ThemeContext.Extend
-                value={{
-                    text: {
-                      extend: () => `
-                        color: #ffdbe1;
-                      `,
-                  },
-                }}
-              >
-                <Text
-                  size="xlarge"
-                  textAlign="center"
-                  margin={{
-                    bottom: "20px"
-                  }}>
-                  { inspirationalQuotes[Math.floor(Math.random() * (inspirationalQuotes.length))] }
-                </Text>
-              </ThemeContext.Extend>
-            </Box>
-            <ThemeContext.Extend
-              value={{
-                button: {
-                  extend: () => `
-                    color: purple;
-                    background-color: #ffdbe1;
-                    border-radius: 50px;
-
-                    &:hover {
-                      border-color: #ffdbe1;
-                    }
-                  `,
-                },
-              }}
-            >
-              <Route render={({ history }) => (
-                <GrommetButton 
-                  label="Finish Workout"
-                  margin={{
-                    top: "10px",
-                    bottom: "90px",
-                  }}
-                  border={{
-                    radius: "50px",
-                  }}
-                  size="large"
-                  onClick={() => { 
-                    setShowLayer(false)
-                    history.push( {
-                      pathname: '/',
-                      state: inspirationalQuotes
-                    });
-                  }} >
-                </GrommetButton>
+        <Layer 
+          className="congrats-message-container" 
+          full  
+          background='purple'
+        >
+          <div className="congrats-message">
+            <h1>{inspirationalQuotes[Math.floor(Math.random() * (inspirationalQuotes.length))] } </h1>
+            <Route render={({ history }) => (
+              <button 
+                className="styled-button white-button"
+                onClick={() => { 
+                  setShowLayer(false)
+                  history.push( {
+                    pathname: '/',
+                    state: inspirationalQuotes
+                  });
+                }}>
+                  Finish Workout
+              </button>
               )} />
-            </ThemeContext.Extend>
-          </Box>
+          </div>
         </Layer>
       )}
     </div>

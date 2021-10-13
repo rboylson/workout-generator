@@ -1,66 +1,26 @@
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Exercise from './Exercise.js';
 import AddWorkout from './AddWorkout.js';
-import { Link } from 'react-router-dom';
-import { Box, Table, TableBody, TableCell, TableHeader, TableRow, Text } from 'grommet';
 
-function ExerciseList() {
-  let typeExercises = [];
-  let targetExercises = [];
-  let [urlUpdated, setUrlUpdated] = useState('');
-  const [type, setType] = useState([]);
-  const [targets, setTarget] = useState([]);
-  const [list, setList] = useState([]);
-
-  useEffect(()=>{
-    fetch('http://localhost:3000/types')
-      .then(response => response.json())
-      .then(setType);
-  }, []);
-
-  useEffect(()=>{
-    fetch('http://localhost:3000/target')
-      .then(response => response.json())
-      .then(setTarget);
-  }, []);
-
-  useEffect(()=>{
-    fetch('http://localhost:3000/workouts')
-      .then(response => response.json())
-      .then(setList);
-  }, [urlUpdated]);
-
-  type.map((element, index) => {
-    return typeExercises[index] = element.name;
-  });  
-  
-  targets.map((element, index) => {
-    return targetExercises[index] = element.name;
-  });
+function ExerciseList(props) {
 
   return (
-    <div>
-      <Box align='end' margin={{ top: "18px",right: "20px" }}>
-        <Link to='/'><Text size="xlarge">⌂</Text></Link>
-      </Box> 
-    
-      <Box pad={{horizontal: 'medium', bottom: 'small'}}>
-        <Text size="large">Exercise List</Text>
-      </Box>
-
-      <Box pad={{horizontal: 'medium', bottom: 'small'}}>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableCell><Text size="medium">Name</Text></TableCell>
-              <TableCell><Text size="medium">Type</Text></TableCell>
-              <TableCell><Text size="medium">Target</Text></TableCell>
-              <TableCell><Text size="medium">Timing</Text></TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {list.map(item =>
+    <div className="exercise-list-wrapper">
+      <Link to="/" className="navButton">⌂</Link>
+      <div className="exercise-list">
+        <h1>Exercise List</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Target</th>
+              <th>Timing</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.list.map(item =>
               <Exercise 
                 key={item.id}
                 id={item.id} 
@@ -68,15 +28,18 @@ function ExerciseList() {
                 type={item.type} 
                 timing={item.timing} 
                 target={item.target} 
-                setUrlUpdated={setUrlUpdated}
+                setUrlUpdated={props.setUrlUpdated}
+                typeExercises={props.typeExercises}
+                targetExercises={props.targetExercises}
               />
             )}
-          </TableBody>
-        </Table>
-      </Box>
-        
-      <AddWorkout setUrlUpdated={setUrlUpdated} />
-
+          </tbody>
+        </table>
+        <AddWorkout 
+          typeExercises={props.typeExercises}
+          targetExercises={props.targetExercises}
+          setUrlUpdated={props.setUrlUpdated} />
+      </div>
     </div>
   );
 }

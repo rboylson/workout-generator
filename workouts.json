@@ -2,10 +2,10 @@
   "workouts": [
     {
       "id": "e5WnZWW",
-      "name": "FF Core Exercise",
+      "name": "FF Core Exercises",
       "type": "Exercise",
-      "timing": "12x",
-      "target": "Core"
+      "target": "Core",
+      "timing": "10x"
     },
     {
       "id": "WlYcCWD",
@@ -176,13 +176,6 @@
       "id": "qfBYg1E"
     },
     {
-      "name": "Seated Rotation",
-      "type": "Stretch",
-      "target": "Posture",
-      "timing": "10x",
-      "id": "m3R6sms"
-    },
-    {
       "name": "Seated Trapezius",
       "type": "Stretch",
       "target": "Posture",
@@ -218,11 +211,11 @@
       "id": "0W5Z8_I"
     },
     {
-      "name": "YATL Stretch",
+      "id": "yBb4AMs",
+      "name": "YWTL Stretch",
       "type": "Stretch",
       "target": "Arms, Posture",
-      "timing": "30s",
-      "id": "yBb4AMs"
+      "timing": "20s"
     },
     {
       "id": "YHH8rvc",
@@ -230,13 +223,6 @@
       "type": "Exercise",
       "target": "Arms",
       "timing": "12x"
-    },
-    {
-      "id": "h39Ki1O",
-      "name": "Exercise123 Name Goes Here",
-      "type": "Stretch",
-      "target": "target1, target2",
-      "timing": "30s"
     }
   ],
   "types": [

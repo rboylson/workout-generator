@@ -4,6 +4,8 @@ html {
   background: linear-gradient(120deg, #fffcdc 0%, #d9a7c7 100%) no-repeat;
   background: -webkit-linear-gradient(120deg, #fffcdc 0%, #d9a7c7 100%) no-repeat; 
   background-size: cover;
+  color: purple;
+  font-family: 'Montserrat', sans-serif;
 }
 
 html, body, #root, #root>div {
@@ -11,15 +13,232 @@ html, body, #root, #root>div {
   min-height: 100%;
 }
 
+h1 {
+  line-height: 40px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-button {
-  position: relative;
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    padding: 8px 10px;
+    font-size: 22px;
+    font-weight: normal;
+    border-bottom: 1px solid #ffdbe1;
+  }
+
+  td {
+    padding: 2px 10px;
+  }
+
+  @media screen and (max-width: 767px) {
+    td, th {
+      font-size: 13px;
+      padding: 2px 3px;
+    }
+
+  }
 }
 
 .required {
-  font-size: 10px !important;
+  font-size: 10px;
+  line-height: 0;
+  margin-bottom: 20px;
+  margin-left: 2px;
+}
+
+.navButton {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 45px;
+  padding: 16px 15px;
+}
+
+.styled-button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  padding: 10px 22px;
+  transition-property: box-shadow;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+  font-size: 18px;
+  color: white;
+  background-color: purple;
+  border-radius: 50px;
+  width: -moz-fit-content;
+  box-sizing: border-box;
+
+  &:hover {
+    box-shadow: 0px 0px 0px 2px purple
+  }
+
+  &.white-button{
+    background-color: white;
+    color: purple;
+
+    &:hover {
+      box-shadow: 0px 0px 0px 2px white;
+    }
+  }
+}
+
+.workout-generator-wrapper {
+  font-size: 20px !important;
+
+  h1 {
+    margin-top: 8%;
+    text-align: center;
+  }
+
+  .workout-generator-form {
+    display: flex;
+    padding: 0px 20px;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 767px) {
+      flex-direction: column;
+      max-height: unset;
+      
+    }
+
+    .select-input-wrapper {
+      margin-right: 5px;
+    }
+
+    .text-input-wrapper {
+      max-width: 105px;
+
+      input {
+        font-size: 20px !important;
+      }
+    }
+  }
+
+  .button-wrapper {
+    text-align: center;
+  }
+}
+
+
+.workout-wrapper {
+  padding-top: 75px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.congrats-message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .congrats-message {
+    max-width: 500px;
+    padding: 20px 20px 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      color: white;
+      text-align: center;
+    }
+  }
+}
+
+.exercise-list-wrapper {
+
+  .exercise-list {
+    padding: 0 20px;
+  }
+
+}
+
+
+.add-workout-wrapper {
+  font-size: 20px !important;
+  display: flex;
+  margin: 60px 0 220px 0;
+
+  .select-input-wrapper {
+    margin-right: 5px;
+  }
+
+  .text-input-wrapper {
+    width: 400px;
+    max-width: 100%;
+    margin-right: 5px;
+
+    input {
+      font-size: 20px !important;
+    }
+
+    &.timing {
+      max-width: 105px;
+    }
+  }
+
+  .styled-button {
+    min-width: 168px;
+  }
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    max-height: unset;
+    align-items: center;
+    
+    .text-input-wrapper {
+      max-width: 293px;
+      width: 100%;
+    }
+  }
+}
+
+.edit-exercise-wrapper {
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: purple;
+    cursor: pointer;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #ffdbe1;
+    }
+  }
+}
+
+.edit-exercise-layer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  padding: 10px;
+
+  >div {
+    margin-bottom: 10px;
+  }
+  >button {
+    margin-bottom: 10px;
+  }
+
+  .delete-link {
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: purple;
+    }
+  }
 }
