@@ -46,7 +46,7 @@ function Workout( props ) {
   }
 
   let workoutArray = [];
-  let url = `http://localhost:3000/workouts?${workoutTypeJson}`;
+  let url = `${ props.jsonUrl }workouts?${workoutTypeJson}`;
   let [showLayer, setShowLayer] = useState(false);
 
   useEffect(()=>{

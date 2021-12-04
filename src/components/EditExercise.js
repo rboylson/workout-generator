@@ -11,7 +11,7 @@ function EditExercise(props) {
   let deleteLabel = "Delete " + exerciseTypeInput;
 
   function updateItem(id, exerciseNameInput, exerciseTypeInput, exerciseTargetInput, exerciseTimingInput ) {
-    let url = `http://localhost:3000/workouts/${ id }`;
+    let url = `${ props.jsonUrl }${ id }`;
 
     let body = {
       id: id,
@@ -34,7 +34,7 @@ function EditExercise(props) {
   }
   
   function deleteItem(id) {
-    let url = `http://localhost:3000/workouts/${ id }`;  
+    let url = `${ props.jsonUrl }workouts/${ id }`;  
     fetch(url, { method: 'DELETE' });
     props.setUrlUpdated(id);
   }

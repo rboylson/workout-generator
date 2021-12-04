@@ -31,6 +31,7 @@ function ExerciseList(props) {
                 setUrlUpdated={props.setUrlUpdated}
                 typeExercises={props.typeExercises}
                 targetExercises={props.targetExercises}
+                jsonUrl={props.jsonUrl}
               />
             )}
           </tbody>
@@ -38,7 +39,9 @@ function ExerciseList(props) {
         <AddWorkout 
           typeExercises={props.typeExercises}
           targetExercises={props.targetExercises}
-          setUrlUpdated={props.setUrlUpdated} />
+          setUrlUpdated={props.setUrlUpdated} 
+          jsonUrl={props.jsonUrl}
+          />
       </div>
     </div>
   );

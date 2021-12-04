@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 import ExerciseList from './components/ExerciseList.js';
 import WorkoutGenerator from './components/WorkoutGenerator.js';
 import Workout from './components/Workout.js';
+import { defaultProps } from 'grommet';
+
+const jsonUrl = 'https://randomizer-workout-json.herokuapp.com/';
+// const jsonUrl = 'http://localhost:3000/';
 
 function App() {
 
@@ -14,19 +18,19 @@ function App() {
   let targetExercises = [];
 
   useEffect(()=>{
-    fetch('http://localhost:3000/workouts')
+    fetch(`${ jsonUrl }workouts`)
       .then(response => response.json())
       .then(setList);
   }, [urlUpdated]);
 
   useEffect(()=>{
-    fetch('http://localhost:3000/types')
+    fetch(`${ jsonUrl }types`)
       .then(response => response.json())
       .then(setType);
   }, []);
 
   useEffect(()=>{
-    fetch('http://localhost:3000/target')
+    fetch(`${ jsonUrl }target`)
       .then(response => response.json())
       .then(setTarget);
   }, []);
@@ -55,9 +59,14 @@ function App() {
           setUrlUpdated={setUrlUpdated}
           typeExercises={typeExercises}
           targetExercises={targetExercises}
+          jsonUrl={jsonUrl}
         />
       </Route>                  
-      <Route path="/start" component={Workout}></Route>
+      <Route path="/start">
+        <Workout 
+          jsonUrl={jsonUrl}
+        />
+      </Route>
     </Router>
   );
 }

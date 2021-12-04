@@ -169,27 +169,6 @@
       "id": "LqZb54v"
     },
     {
-      "name": "Seated Extension",
-      "type": "Stretch",
-      "target": "Posture",
-      "timing": "10x",
-      "id": "qfBYg1E"
-    },
-    {
-      "name": "Seated Trapezius",
-      "type": "Stretch",
-      "target": "Posture",
-      "timing": "10x",
-      "id": "13y3BId"
-    },
-    {
-      "id": "fon2ZxT",
-      "name": "Seated Levator Stretch",
-      "type": "Stretch",
-      "target": "Posture",
-      "timing": "12x"
-    },
-    {
       "name": "Pull head down and rotate",
       "type": "Stretch",
       "target": "Posture",

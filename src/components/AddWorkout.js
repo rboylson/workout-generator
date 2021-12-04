@@ -13,7 +13,7 @@ function AddWorkout( props ) {
   const [timingRequired, setTimingRequired] = useState(false);
 
   function addExerciseToList(exerciseNameInput, exerciseTypeInput, exerciseTargetInput, exerciseTimingInput ) {
-    let url = `http://localhost:3000/workouts/`;
+    let url = `${ props.jsonUrl }workouts/`;
   
     let body = {
       name: exerciseNameInput,

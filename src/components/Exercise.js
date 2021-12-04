@@ -17,6 +17,7 @@ function Exercise(props) {
           typeExercises={props.typeExercises}
           targetExercises={props.targetExercises}
           setUrlUpdated={props.setUrlUpdated}
+          jsonUrl={props.jsonUrl}
         />
       </td>
     </tr>   
