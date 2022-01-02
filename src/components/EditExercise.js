@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import { Layer, Select, TextInput } from 'grommet';
+import { useState } from "react";
+import { Layer, Select, TextInput } from "grommet";
 
-function EditExercise(props) { 
-  
+function EditExercise(props) {
   const [exerciseNameInput, setExerciseNameInput] = useState(props.name);
   const [exerciseTypeInput, setExerciseTypeInput] = useState(props.type);
   const [exerciseTargetInput, setExerciseTargetInput] = useState(props.target);
@@ -10,32 +9,39 @@ function EditExercise(props) {
   let [showLayer, setShowLayer] = useState(false);
   let deleteLabel = "Delete " + exerciseTypeInput;
 
-  function updateItem(id, exerciseNameInput, exerciseTypeInput, exerciseTargetInput, exerciseTimingInput ) {
-    let url = `${ props.jsonUrl }${ id }`;
+  function updateItem(
+    id,
+    exerciseNameInput,
+    exerciseTypeInput,
+    exerciseTargetInput,
+    exerciseTimingInput
+  ) {
+    let url = `${props.jsonUrl}workouts/${id}`;
+    console.log("url", url);
 
     let body = {
       id: id,
       name: exerciseNameInput,
       type: exerciseTypeInput,
       target: exerciseTargetInput,
-      timing: exerciseTimingInput
+      timing: exerciseTimingInput,
     };
 
     fetch(url, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     props.setUrlUpdated(id);
   }
-  
+
   function deleteItem(id) {
-    let url = `${ props.jsonUrl }workouts/${ id }`;  
-    fetch(url, { method: 'DELETE' });
+    let url = `${props.jsonUrl}workouts/${id}`;
+    fetch(url, { method: "DELETE" });
     props.setUrlUpdated(id);
   }
 
@@ -45,28 +51,25 @@ function EditExercise(props) {
 
   return (
     <div className="edit-exercise-wrapper">
-
-      <button onClick={() => {
-          editItem(props)
-        }}>
+      <button
+        onClick={() => {
+          editItem(props);
+        }}
+      >
         ✎
       </button>
 
-      { showLayer && (
-
-        <Layer
-          position="center"
-          onClickOutside={() => setShowLayer(false)}
-        >
+      {showLayer && (
+        <Layer position="center" onClickOutside={() => setShowLayer(false)}>
           <div className="edit-exercise-layer-wrapper">
-
-            <TextInput 
+            <TextInput
               placeholder={props.name}
               value={exerciseNameInput}
-              onChange={(event) => { 
+              onChange={(event) => {
+                console.log("set");
                 setExerciseNameInput(event.target.value);
               }}
-            /> 
+            />
 
             <Select
               placeholder="Type"
@@ -77,32 +80,40 @@ function EditExercise(props) {
                 setExerciseTypeInput(event.value);
               }}
             />
-            
+
             <Select
               placeholder="Target"
               multiple
               messages={{ multiple: "Multiple" }}
               closeOnChange={false}
-              defaultValue={exerciseTargetInput.replace(/\s/g, '').split(',')}
+              defaultValue={exerciseTargetInput.replace(/\s/g, "").split(",")}
               options={props.targetExercises}
               onChange={(event) => {
-                setExerciseTargetInput((event.value).sort().join(', '));
+                setExerciseTargetInput(event.value.sort().join(", "));
               }}
-            /> 
+            />
 
-            <TextInput 
-              placeholder="Timing" 
+            <TextInput
+              placeholder="Timing"
               value={exerciseTimingInput}
               onChange={(event) => {
                 setExerciseTimingInput(event.target.value);
               }}
             />
 
-            <button className="styled-button" 
+            <button
+              className="styled-button"
               onClick={() => {
-                updateItem(props.id, exerciseNameInput, exerciseTypeInput, exerciseTargetInput, exerciseTimingInput );
+                updateItem(
+                  props.id,
+                  exerciseNameInput,
+                  exerciseTypeInput,
+                  exerciseTargetInput,
+                  exerciseTimingInput
+                );
                 setShowLayer(false);
-              }}>
+              }}
+            >
               Update
             </button>
 
@@ -111,11 +122,11 @@ function EditExercise(props) {
               onClick={() => {
                 deleteItem(props.id);
                 setShowLayer(false);
-            }}>
-              { deleteLabel }
+              }}
+            >
+              {deleteLabel}
             </p>
-           
-          </div>     
+          </div>
         </Layer>
       )}
     </div>
