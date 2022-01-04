@@ -17,7 +17,6 @@ function EditExercise(props) {
     exerciseTimingInput
   ) {
     let url = `${props.jsonUrl}workouts/${id}`;
-    console.log("url", url);
 
     let body = {
       id: id,
@@ -66,7 +65,6 @@ function EditExercise(props) {
               placeholder={props.name}
               value={exerciseNameInput}
               onChange={(event) => {
-                console.log("set");
                 setExerciseNameInput(event.target.value);
               }}
             />

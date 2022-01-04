@@ -1,14 +1,18 @@
 html {
   margin: 0;
-  background: #d9a7c7; 
+  background: #d9a7c7;
   background: linear-gradient(120deg, #fffcdc 0%, #d9a7c7 100%) no-repeat;
-  background: -webkit-linear-gradient(120deg, #fffcdc 0%, #d9a7c7 100%) no-repeat; 
+  background: -webkit-linear-gradient(120deg, #fffcdc 0%, #d9a7c7 100%)
+    no-repeat;
   background-size: cover;
   color: purple;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-html, body, #root, #root>div {
+html,
+body,
+#root,
+#root > div {
   height: auto;
   min-height: 100%;
 }
@@ -39,11 +43,11 @@ table {
   }
 
   @media screen and (max-width: 767px) {
-    td, th {
+    td,
+    th {
       font-size: 13px;
       padding: 2px 3px;
     }
-
   }
 }
 
@@ -57,8 +61,22 @@ table {
 .navButton {
   display: flex;
   justify-content: flex-end;
-  font-size: 45px;
   padding: 16px 15px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+
+    & * {
+      fill: purple;
+    }
+
+    &:hover {
+      & * {
+        fill: white;
+      }
+    }
+  }
 }
 
 .styled-button {
@@ -77,10 +95,10 @@ table {
   box-sizing: border-box;
 
   &:hover {
-    box-shadow: 0px 0px 0px 2px purple
+    box-shadow: 0px 0px 0px 2px purple;
   }
 
-  &.white-button{
+  &.white-button {
     background-color: white;
     color: purple;
 
@@ -107,7 +125,6 @@ table {
     @media screen and (max-width: 767px) {
       flex-direction: column;
       max-height: unset;
-      
     }
 
     .select-input-wrapper {
@@ -127,7 +144,6 @@ table {
     text-align: center;
   }
 }
-
 
 .workout-wrapper {
   padding-top: 75px;
@@ -156,13 +172,10 @@ table {
 }
 
 .exercise-list-wrapper {
-
   .exercise-list {
     padding: 0 20px;
   }
-
 }
-
 
 .add-workout-wrapper {
   font-size: 20px !important;
@@ -195,7 +208,7 @@ table {
     flex-direction: column;
     max-height: unset;
     align-items: center;
-    
+
     .text-input-wrapper {
       max-width: 293px;
       width: 100%;
@@ -204,7 +217,6 @@ table {
 }
 
 .edit-exercise-wrapper {
-
   button {
     background-color: transparent;
     border: none;
@@ -225,10 +237,10 @@ table {
   align-content: center;
   padding: 10px;
 
-  >div {
+  > div {
     margin-bottom: 10px;
   }
-  >button {
+  > button {
     margin-bottom: 10px;
   }
 

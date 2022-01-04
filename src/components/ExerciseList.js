@@ -1,12 +1,14 @@
-import { Link } from 'react-router-dom';
-import Exercise from './Exercise.js';
-import AddWorkout from './AddWorkout.js';
+import { Link } from "react-router-dom";
+import Exercise from "./Exercise.js";
+import AddWorkout from "./AddWorkout.js";
+import Home from "../vectors/Home";
 
 function ExerciseList(props) {
-
   return (
     <div className="exercise-list-wrapper">
-      <Link to="/" className="navButton">⌂</Link>
+      <Link to="/" className="navButton">
+        <Home />
+      </Link>
       <div className="exercise-list">
         <h1>Exercise List</h1>
         <table>
@@ -15,33 +17,33 @@ function ExerciseList(props) {
               <th>Name</th>
               <th>Type</th>
               <th>Target</th>
-              <th>Timing</th>
+              <th>Reps per set</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {props.list.map(item =>
-              <Exercise 
+            {props.list.map((item) => (
+              <Exercise
                 key={item.id}
-                id={item.id} 
-                name={item.name} 
-                type={item.type} 
-                timing={item.timing} 
-                target={item.target} 
+                id={item.id}
+                name={item.name}
+                type={item.type}
+                timing={item.timing}
+                target={item.target}
                 setUrlUpdated={props.setUrlUpdated}
                 typeExercises={props.typeExercises}
                 targetExercises={props.targetExercises}
                 jsonUrl={props.jsonUrl}
               />
-            )}
+            ))}
           </tbody>
         </table>
-        <AddWorkout 
+        <AddWorkout
           typeExercises={props.typeExercises}
           targetExercises={props.targetExercises}
-          setUrlUpdated={props.setUrlUpdated} 
+          setUrlUpdated={props.setUrlUpdated}
           jsonUrl={props.jsonUrl}
-          />
+        />
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import ExerciseList from "./components/ExerciseList.js";
 import WorkoutGenerator from "./components/WorkoutGenerator.js";
 import Workout from "./components/Workout.js";
-import { defaultProps } from "grommet";
 
 const jsonUrl = "https://randomizer-workout-json.herokuapp.com/";
 // const jsonUrl = "http://localhost:3000/";
