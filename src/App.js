@@ -10,15 +10,19 @@ function App() {
   const [type, setType] = useState([]);
   const [target, setTarget] = useState([]);
   const [list, setList] = useState([]);
-  let [urlUpdated, setUrlUpdated] = useState("");
+  const [exerciseCount, setExerciseCount] = useState(0);
   let typeExercises = [];
   let targetExercises = [];
 
-  useEffect(() => {
+  function fetchWorkouts() {
     fetch(`${jsonUrl}workouts`)
       .then((response) => response.json())
       .then(setList);
-  }, [urlUpdated]);
+  }
+
+  useEffect(() => {
+    fetchWorkouts();
+  }, [exerciseCount]);
 
   useEffect(() => {
     fetch(`${jsonUrl}types`)
@@ -47,16 +51,16 @@ function App() {
           list={list}
           typeExercises={typeExercises}
           targetExercises={targetExercises}
-          setUrlUpdated={setUrlUpdated}
         />
       </Route>
       <Route path="/list">
         <ExerciseList
           list={list}
-          setUrlUpdated={setUrlUpdated}
           typeExercises={typeExercises}
           targetExercises={targetExercises}
           jsonUrl={jsonUrl}
+          setExerciseCount={setExerciseCount}
+          exerciseCount={exerciseCount}
         />
       </Route>
       <Route path="/start">

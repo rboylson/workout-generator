@@ -1,6 +1,6 @@
-import EditExercise from './EditExercise.js';
+import EditExercise from "./EditExercise.js";
 
-function Exercise(props) {  
+function Exercise(props) {
   return (
     <tr key={props.id}>
       <td>{props.name}</td>
@@ -8,19 +8,20 @@ function Exercise(props) {
       <td>{props.target}</td>
       <td>{props.timing}</td>
       <td>
-        <EditExercise 
-          id={props.id} 
-          name={props.name} 
-          type={props.type} 
-          target={props.target} 
+        <EditExercise
+          id={props.id}
+          name={props.name}
+          type={props.type}
+          target={props.target}
           timing={props.timing}
           typeExercises={props.typeExercises}
           targetExercises={props.targetExercises}
-          setUrlUpdated={props.setUrlUpdated}
           jsonUrl={props.jsonUrl}
+          setExerciseCount={props.setExerciseCount}
+          exerciseCount={props.exerciseCount}
         />
       </td>
-    </tr>   
+    </tr>
   );
 }
 

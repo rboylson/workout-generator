@@ -64,8 +64,10 @@ function Workout(props) {
     } else {
       checkedNum--;
     }
+
     if (checkedNum === workoutArray.filter(checkCount).length) {
       setShowLayer(!showLayer);
+      checkedNum = 0;
     }
   }
 

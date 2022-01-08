@@ -35,9 +35,9 @@ function AddWorkout(props) {
         Accept: "application/json",
       },
       body: JSON.stringify(body),
+    }).then(() => {
+      props.setExerciseCount(props.exerciseCount + 1);
     });
-
-    props.setUrlUpdated(url);
 
     setExerciseNameInput("");
     setExerciseTypeInput("");
@@ -81,7 +81,6 @@ function AddWorkout(props) {
           closeOnChange={false}
           options={props.targetExercises}
           onChange={(event) => {
-            console.log(event);
             setExerciseTargetInput(event.value);
             setTargetRequired(false);
           }}

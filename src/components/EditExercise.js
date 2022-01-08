@@ -33,15 +33,16 @@ function EditExercise(props) {
         Accept: "application/json",
       },
       body: JSON.stringify(body),
+    }).then(() => {
+      props.setExerciseCount(props.exerciseCount + 1);
     });
-
-    props.setUrlUpdated(id);
   }
 
   function deleteItem(id) {
     let url = `${props.jsonUrl}workouts/${id}`;
-    fetch(url, { method: "DELETE" });
-    props.setUrlUpdated(id);
+    fetch(url, { method: "DELETE" }).then(() => {
+      props.setExerciseCount(props.exerciseCount + 1);
+    });
   }
 
   function editItem() {
