@@ -29,6 +29,7 @@ a {
 table {
   width: 100%;
   border-collapse: collapse;
+  line-height: 15px;
 
   th {
     text-align: left;
@@ -39,14 +40,15 @@ table {
   }
 
   td {
-    padding: 2px 10px;
+    padding: 8px 10px;
   }
 
   @media screen and (max-width: 767px) {
     td,
     th {
       font-size: 13px;
-      padding: 2px 3px;
+      padding: 6px 5px;
+      word-break: break-word;
     }
   }
 }
@@ -58,10 +60,14 @@ table {
   margin-left: 2px;
 }
 
-.navButton {
+.nav-button-wrapper {
   display: flex;
   justify-content: flex-end;
-  padding: 16px 15px;
+
+  .nav-button {
+    padding: 16px 15px;
+    width: fit-content;
+  }
 
   svg {
     width: 24px;

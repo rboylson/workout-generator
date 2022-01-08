@@ -6,9 +6,11 @@ import Exercise from "./Exercise.js";
 function ExerciseList(props) {
   return (
     <div className="exercise-list-wrapper">
-      <Link to="/" className="navButton">
-        <Home />
-      </Link>
+      <div className="nav-button-wrapper">
+        <Link to="/" className="nav-button">
+          <Home />
+        </Link>
+      </div>
       <div className="exercise-list">
         <h1>Exercise List</h1>
         <table>

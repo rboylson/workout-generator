@@ -13,9 +13,11 @@ function WorkoutGenerator(props) {
 
   return (
     <div className="workout-generator-wrapper">
-      <Link to="/list" className="navButton">
-        <Settings />
-      </Link>
+      <div className="nav-button-wrapper">
+        <Link to="/list" className="nav-button">
+          <Settings />
+        </Link>
+      </div>
       <h1>Generate Workout</h1>
       <div className="workout-generator-form">
         <div className="select-input-wrapper">
