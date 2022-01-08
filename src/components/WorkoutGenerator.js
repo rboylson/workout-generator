@@ -1,6 +1,6 @@
-import { Route, Link } from "react-router-dom";
-import { useState } from "react";
 import { Select, TextInput } from "grommet";
+import { useState } from "react";
+import { Link, Route } from "react-router-dom";
 import Settings from "../vectors/Settings";
 
 function WorkoutGenerator(props) {
@@ -30,7 +30,9 @@ function WorkoutGenerator(props) {
               setTypeRequired(false);
             }}
           />
-          <p className="required">{typeRequired && "required"}&nbsp;</p>
+          <p className="required">
+            {typeRequired && "required: "} select 1 or more
+          </p>
         </div>
         <div className="select-input-wrapper">
           <Select
@@ -54,6 +56,8 @@ function WorkoutGenerator(props) {
               setRepsRequired(false);
             }}
             type="number"
+            min="1"
+            step="1"
           />
           <p className="required">{repsRequired && "required"}&nbsp;</p>
         </div>

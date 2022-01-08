@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { CheckBox, Layer, List, Text } from "grommet";
-import { Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Route, useLocation } from "react-router-dom";
 
 let checkedNum = 0;
 let inspirationalQuotes = [
   "Bravo!",
   "You did it!",
-  "You did it! Treat yo-self (but make sure it's healthy)",
+  "You did it! Treat yo-self!",
   "Brava, Brava, Bravissima!",
+  "☜(⌒▽⌒)☞",
+  "(☞ ͡° ͜ʖ ͡°)☞",
 ];
 
 function randomizeQuery(query, workoutArray, workoutReps, workoutTarget) {
@@ -79,10 +80,12 @@ function Workout(props) {
         data={workoutArray.filter(checkCount)}
         primaryKey={(item) => (
           <Text size="large">
-            {item.name}: {item.timing}
+            {item.timing}: {item.name}
           </Text>
         )}
-        secondaryKey={(item) => <Text size="medium">Sets: {item.count}</Text>}
+        secondaryKey={(item) => (
+          <Text size="medium">Repeat: {item.count}x</Text>
+        )}
         action={(item) => (
           <CheckBox
             pad="medium"

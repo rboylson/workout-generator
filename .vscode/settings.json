@@ -1,2 +1,10 @@
 {
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true,
+    "source.sortMembers": true
+  },
+  "javascript.validate.enable": true,
+  "editor.showUnused": true
 }

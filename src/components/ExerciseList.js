@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Exercise from "./Exercise.js";
-import AddWorkout from "./AddWorkout.js";
 import Home from "../vectors/Home";
+import AddWorkout from "./AddWorkout.js";
+import Exercise from "./Exercise.js";
 
 function ExerciseList(props) {
   return (

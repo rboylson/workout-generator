@@ -1,30 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App.js'
-import './index.scss'
-import { Grommet } from 'grommet';
-
+import { Grommet } from "grommet";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.js";
+import "./index.scss";
 
 const theme = {
-
   global: {
     colors: {
-      selected: '#ffdbe1',
-      brand: 'purple',
-      color: 'white',
-      border: '#ffdbe1',
+      selected: "#ffdbe1",
+      brand: "purple",
+      color: "white",
+      border: "#ffdbe1",
     },
     focus: {
       border: {
-        color: '#fff00',
+        color: "#fff00",
       },
     },
     select: {
       control: {
         open: {
-          background: '#fff',
-        }
-      }
+          background: "#fff",
+        },
+      },
     },
   },
   button: {
@@ -46,13 +44,13 @@ const theme = {
       `,
     },
     border: {
-      color: '#ffdbe1',
+      color: "#ffdbe1",
     },
     hover: {
       border: {
-        color: 'purple',
-      }
-    }
+        color: "purple",
+      },
+    },
   },
   textInput: {
     extend: () => `
@@ -67,14 +65,11 @@ const theme = {
   },
 };
 
-
 ReactDOM.render(
-    <React.StrictMode>
-      <Grommet 
-      theme={theme}
-      >
-        <App />
-      </Grommet>
-    </React.StrictMode>,
-  document.getElementById('root')
+  <React.StrictMode>
+    <Grommet theme={theme}>
+      <App />
+    </Grommet>
+  </React.StrictMode>,
+  document.getElementById("root")
 );

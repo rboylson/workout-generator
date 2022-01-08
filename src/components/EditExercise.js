@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Layer, Select, TextInput } from "grommet";
+import { useState } from "react";
 
 function EditExercise(props) {
   const [exerciseNameInput, setExerciseNameInput] = useState(props.name);
@@ -90,6 +90,7 @@ function EditExercise(props) {
                 setExerciseTargetInput(event.value.sort().join(", "));
               }}
             />
+            <p className="required">select 1 or more</p>
 
             <TextInput
               placeholder="Timing"

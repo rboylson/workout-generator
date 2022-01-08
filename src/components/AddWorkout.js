@@ -1,15 +1,17 @@
-import { useState } from "react";
 import { Select, TextInput } from "grommet";
+import { useEffect, useState } from "react";
 
 function AddWorkout(props) {
   const [exerciseNameInput, setExerciseNameInput] = useState("");
   const [exerciseTypeInput, setExerciseTypeInput] = useState("");
-  const [exerciseTargetInput, setExerciseTargetInput] = useState("");
+  const [exerciseTargetInput, setExerciseTargetInput] = useState([]);
   const [exerciseTimingInput, setExerciseTimingInput] = useState("");
   const [nameRequired, setNameRequired] = useState(false);
   const [typeRequired, setTypeRequired] = useState(false);
   const [targetRequired, setTargetRequired] = useState(false);
   const [timingRequired, setTimingRequired] = useState(false);
+
+  useEffect(() => {}, [exerciseTargetInput]);
 
   function addExerciseToList(
     exerciseNameInput,
@@ -39,7 +41,7 @@ function AddWorkout(props) {
 
     setExerciseNameInput("");
     setExerciseTypeInput("");
-    setExerciseTargetInput("");
+    setExerciseTargetInput([]);
     setExerciseTimingInput("");
   }
 
@@ -73,16 +75,20 @@ function AddWorkout(props) {
       <div className="select-input-wrapper">
         <Select
           placeholder="Target"
+          value={exerciseTargetInput}
           multiple
           messages={{ multiple: "Multiple" }}
           closeOnChange={false}
           options={props.targetExercises}
           onChange={(event) => {
-            setExerciseTargetInput(event.value.sort().join(", "));
+            console.log(event);
+            setExerciseTargetInput(event.value);
             setTargetRequired(false);
           }}
         />
-        <p className="required">{targetRequired && "required"}&nbsp;</p>
+        <p className="required">
+          {targetRequired && "required: "}select 1 or more
+        </p>
       </div>
 
       <div className="text-input-wrapper timing">
@@ -110,7 +116,7 @@ function AddWorkout(props) {
               addExerciseToList(
                 exerciseNameInput,
                 exerciseTypeInput,
-                exerciseTargetInput,
+                exerciseTargetInput.sort().join(", "),
                 exerciseTimingInput
               );
             } else {
