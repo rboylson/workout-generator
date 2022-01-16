@@ -2,22 +2,22 @@
 
 Live link: https://randomizer-workout.herokuapp.com/
 
-Note: Heroku app, may take a moment for the app load.
+Note that this is Heroku app and may take a moment to load.
 
-### About
+## About
 
-A react CRUD app that generates a random workout based on parameters you input.
+I've always found it hard to decide what exercises to do during a workout, so I created an app that generates a random workout based on parameters you input.
 
-You can also add, modify, or delete workouts from your list.
+Core day? Generate a random list of exercises and/or stretches targeting your core.
 
-Arm day?  Generate a random list of exercises and/or stretches targeting your arms.
-
-Note: Heroku app, may take a moment for the app load.
+You can add, update, or delete workouts in the Settings area.
 
 ## Setup
 
 Install json-server: `npm install -g json-server`
 
-First run: `json-server --watch workouts.json`
+Run `npm i`
+
+Then `json-server --watch workouts.json`
 
 Then, in a separate terminal run: `npm start`
