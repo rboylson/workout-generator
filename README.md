@@ -1,8 +1,10 @@
 ## Random Workout Generator
 
-Live link: https://randomizer-workout.herokuapp.com/
+App: https://randomizer-workout.herokuapp.com/
 
-Note that this is Heroku app and may take a moment to load.
+Json: https://randomizer-workout-json.herokuapp.com/
+
+Note that these are hosted on Heroku and may take a moment to load.
 
 ## About
 
