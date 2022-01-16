@@ -1,8 +1,8 @@
 ## Workout Randomizer
 
-App: https://randomizer-workout.herokuapp.com/
+App: <a href="https://randomizer-workout.herokuapp.com/" target="_blank">https://randomizer-workout.herokuapp.com/</a>
 
-Json: https://randomizer-workout-json.herokuapp.com/
+Json: <a href="https://randomizer-workout-json.herokuapp.com/" target="_blank">https://randomizer-workout-json.herokuapp.com/</a>
 
 Note that these are hosted on Heroku and may take a moment to load.
 
