@@ -8,11 +8,7 @@ Note that these are hosted on Heroku and may take a moment to load.
 
 ## About
 
-I've always found it hard to decide what exercises to do during a workout, so I created an app that generates a random workout based on parameters you input.
-
-Core day? Generate a random list of exercises and/or stretches targeting your core.
-
-You can add, update, or delete workouts in the Settings area.
+I've always found it hard to decide what exercises to do during a workout, so I created an app that generates a random workout based on parameters you input.  Core day? Generate a random list of exercises and/or stretches targeting your core.  You can add, update, or delete workouts in the settings area.
 
 ## Setup
 
