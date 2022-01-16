@@ -1,4 +1,4 @@
-## Random Workout Generator
+## Workout Randomizer
 
 App: https://randomizer-workout.herokuapp.com/
 
